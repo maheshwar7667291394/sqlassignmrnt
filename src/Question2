@@ -1,0 +1,8 @@
+	The primary key is accepted as a unique or sole identifier for every record in the table.
+	
+	When the primary key is not present in the table, then the unique key is also used as a unique identifier for records
+	
+	2.2
+	Explanation:
+
+Yes, SQL Statement are case sensitive

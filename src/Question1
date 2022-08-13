@@ -1,0 +1,360 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.30 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mahesh             |
+| mysql              |
+| performance_schema |
+| person             |
+| sys                |
++--------------------+
+6 rows in set (0.05 sec)
+
+mysql> use mahesh;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_mahesh |
++------------------+
+| courses          |
+| employee         |
+| newoffice        |
+| office           |
+| person           |
+| student          |
+| teachers         |
++------------------+
+7 rows in set (0.00 sec)
+
+mysql> drop table employee;
+Query OK, 0 rows affected (0.33 sec)
+
+mysql> select *from employee;
+ERROR 1146 (42S02): Table 'mahesh.employee' doesn't exist
+mysql> create table employee(EmpID int,EmpFname varchar(23),EmpLname varchar(35),Department varchar(23),Project  varchar(34),Address varchar(34),DOB varchar(10),Gender varchar(34),Salary int,primary key(EmpID));
+Query OK, 0 rows affected (0.23 sec)
+
+mysql> desc employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| EmpID      | int         | NO   | PRI | NULL    |       |
+| EmpFname   | varchar(23) | YES  |     | NULL    |       |
+| EmpLname   | varchar(35) | YES  |     | NULL    |       |
+| Department | varchar(23) | YES  |     | NULL    |       |
+| Project    | varchar(34) | YES  |     | NULL    |       |
+| Address    | varchar(34) | YES  |     | NULL    |       |
+| DOB        | varchar(10) | YES  |     | NULL    |       |
+| Gender     | varchar(34) | YES  |     | NULL    |       |
+| Salary     | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+9 rows in set (0.07 sec)
+
+mysql> insert into employee values(1,"armu","yadav","p1","jhdfj","30/34/3423","male",489545);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into employee values(1,"armu","yadav","D1","p1","jhdfj","30/34/3423","male",489545);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into employee values(2,"Sanjay","Mehra ","HR ","P1","Hyderaba")
+    -> d(HYD)
+    ->
+    ->
+    ->
+    ->
+    -> decs employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'd(HYD)
+
+
+
+
+decs employee' at line 2
+mysql> desc employee;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| EmpID      | int         | NO   | PRI | NULL    |       |
+| EmpFname   | varchar(23) | YES  |     | NULL    |       |
+| EmpLname   | varchar(35) | YES  |     | NULL    |       |
+| Department | varchar(23) | YES  |     | NULL    |       |
+| Project    | varchar(34) | YES  |     | NULL    |       |
+| Address    | varchar(34) | YES  |     | NULL    |       |
+| DOB        | varchar(10) | YES  |     | NULL    |       |
+| Gender     | varchar(34) | YES  |     | NULL    |       |
+| Salary     | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+9 rows in set (0.06 sec)
+
+mysql> insert into employee values(2,"Sanjay","Mehra ","HR ","P1","Hyderaba","01/12/19")
+    -> insert into employee values(2,"Sanjay","Mehra ","HR ","P1","Hyderaba","01/12/1976","M",500000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'insert into employee values(2,"Sanjay","Mehra ","HR ","P1","Hyderaba","01/12/197' at line 2
+mysql>  insert into employee values(1,"armu","yadav","D1","p1","jhdfj","01/12/19","M",5000);
+ERROR 1062 (23000): Duplicate entry '1' for key 'employee.PRIMARY'
+mysql>  insert into employee values(2,"ramkumar","sarma","D1","p1","jfjkd","01/12/1990","M",50000);
+Query OK, 1 row affected (0.09 sec)
+
+mysql>  insert into employee values(3 "maehshewar","sahni","D3","p3","kflkd","6/12/1990","M",5000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"maehshewar","sahni","D3","p3","kflkd","6/12/1990","M",5000)' at line 1
+mysql>  insert into employee values(3,"maheshwar","Sahni","D3","p3","jhdfj","01/12/1967","M",5000);
+Query OK, 1 row affected (0.07 sec)
+
+mysql>  insert into employee values(4,"anish","singh","D4","p4","jhdfj","01/12/1564","M",6000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select *from employee;
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+| EmpID | EmpFname  | EmpLname | Department | Project | Address | DOB        | Gender | Salary |
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+|     1 | armu      | yadav    | D1         | p1      | jhdfj   | 30/34/3423 | male   | 489545 |
+|     2 | ramkumar  | sarma    | D1         | p1      | jfjkd   | 01/12/1990 | M      |  50000 |
+|     3 | maheshwar | Sahni    | D3         | p3      | jhdfj   | 01/12/1967 | M      |   5000 |
+|     4 | anish     | singh    | D4         | p4      | jhdfj   | 01/12/1564 | M      |   6000 |
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+4 rows in set (0.00 sec)
+
+mysql>  insert into employee values(5,"renu","yadav","HR","p5","jhdfj","01/12/19","f",5000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql>  insert into employee values(7,"ramkumari","yadav","D1","p1","jhdfj","01/12/19","f",5000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql>  insert into employee values(1,"armu","yadav","D1","p1","jhdfj","01/12/19","M",5000);
+ERROR 1062 (23000): Duplicate entry '1' for key 'employee.PRIMARY'
+mysql> select *from employee;
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+| EmpID | EmpFname  | EmpLname | Department | Project | Address | DOB        | Gender | Salary |
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+|     1 | armu      | yadav    | D1         | p1      | jhdfj   | 30/34/3423 | male   | 489545 |
+|     2 | ramkumar  | sarma    | D1         | p1      | jfjkd   | 01/12/1990 | M      |  50000 |
+|     3 | maheshwar | Sahni    | D3         | p3      | jhdfj   | 01/12/1967 | M      |   5000 |
+|     4 | anish     | singh    | D4         | p4      | jhdfj   | 01/12/1564 | M      |   6000 |
+|     5 | renu      | yadav    | HR         | p5      | jhdfj   | 01/12/19   | f      |   5000 |
+|     7 | ramkumari | yadav    | D1         | p1      | jhdfj   | 01/12/19   | f      |   5000 |
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+6 rows in set (0.00 sec)
+
+mysql> delete *from employee limit 3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*from employee limit 3' at line 1
+mysql>  insert into employee values(6,"ramlal","yadav","Admin","p6","jhdfj","01/12/1976","M",5000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql>  insert into employee values(8,"lalul","sarma","Account","p8","jhdfj","01/12/1978","M",5000);
+Query OK, 1 row affected (0.07 sec)
+
+mysql>  insert into employee values(9,"soniya,"kulkarni","HR","p9","jhdfj","01/12/1990","f",89000);
+    "> insert into employee values(9,"soniya,"kulkarni","HR","p9","jhdfj","01/12/1990","f",89000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'kulkarni","HR","p9","jhdfj","01/12/1990","f",89000);
+insert into employee values' at line 1
+mysql> insert into employee values(9,"soniya","kulkarni","Account","p8","jhdfj","01/12/1976","M",5000);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select *from employee;
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+| EmpID | EmpFname  | EmpLname | Department | Project | Address | DOB        | Gender | Salary |
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+|     1 | armu      | yadav    | D1         | p1      | jhdfj   | 30/34/3423 | male   | 489545 |
+|     2 | ramkumar  | sarma    | D1         | p1      | jfjkd   | 01/12/1990 | M      |  50000 |
+|     3 | maheshwar | Sahni    | D3         | p3      | jhdfj   | 01/12/1967 | M      |   5000 |
+|     4 | anish     | singh    | D4         | p4      | jhdfj   | 01/12/1564 | M      |   6000 |
+|     5 | renu      | yadav    | HR         | p5      | jhdfj   | 01/12/19   | f      |   5000 |
+|     6 | ramlal    | yadav    | Admin      | p6      | jhdfj   | 01/12/1976 | M      |   5000 |
+|     7 | ramkumari | yadav    | D1         | p1      | jhdfj   | 01/12/19   | f      |   5000 |
+|     8 | lalul     | sarma    | Account    | p8      | jhdfj   | 01/12/1978 | M      |   5000 |
+|     9 | soniya    | kulkarni | Account    | p8      | jhdfj   | 01/12/1976 | M      |   5000 |
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+9 rows in set (0.00 sec)
+
+mysql> select *from employee where Department="HR";
++-------+----------+----------+------------+---------+---------+----------+--------+--------+
+| EmpID | EmpFname | EmpLname | Department | Project | Address | DOB      | Gender | Salary |
++-------+----------+----------+------------+---------+---------+----------+--------+--------+
+|     5 | renu     | yadav    | HR         | p5      | jhdfj   | 01/12/19 | f      |   5000 |
++-------+----------+----------+------------+---------+---------+----------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select *from employee where Gender="f";
++-------+-----------+----------+------------+---------+---------+----------+--------+--------+
+| EmpID | EmpFname  | EmpLname | Department | Project | Address | DOB      | Gender | Salary |
++-------+-----------+----------+------------+---------+---------+----------+--------+--------+
+|     5 | renu      | yadav    | HR         | p5      | jhdfj   | 01/12/19 | f      |   5000 |
+|     7 | ramkumari | yadav    | D1         | p1      | jhdfj   | 01/12/19 | f      |   5000 |
++-------+-----------+----------+------------+---------+---------+----------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select *from employee where Gender="f" and Department="HR";
++-------+----------+----------+------------+---------+---------+----------+--------+--------+
+| EmpID | EmpFname | EmpLname | Department | Project | Address | DOB      | Gender | Salary |
++-------+----------+----------+------------+---------+---------+----------+--------+--------+
+|     5 | renu     | yadav    | HR         | p5      | jhdfj   | 01/12/19 | f      |   5000 |
++-------+----------+----------+------------+---------+---------+----------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> select EmpFname,EmpLname from employee where EmpFnaem like(a% or i% or e% o% u%);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'or i% or e% o% u%)' at line 1
+mysql> select EmpFname,EmpLname from employee where EmpFnaem like('a%' or 'i%' or 'o%' or 'u%' or 'e%');
+ERROR 1054 (42S22): Unknown column 'EmpFnaem' in 'where clause'
+mysql> select EmpFname from employee where EmpFname like 'a%';
++----------+
+| EmpFname |
++----------+
+| armu     |
+| anish    |
++----------+
+2 rows in set (0.00 sec)
+
+mysql> select EmpFname from employee where EmpFname like 'a%' or 'i%';
++----------+
+| EmpFname |
++----------+
+| armu     |
+| anish    |
++----------+
+2 rows in set, 1 warning (0.00 sec)
+
+mysql> select EmpFname from employee where EmpFname like 'a%' or "%i";
++----------+
+| EmpFname |
++----------+
+| armu     |
+| anish    |
++----------+
+2 rows in set, 1 warning (0.00 sec)
+
+mysql> select EmpFname from employee where EmpFname like  'a%' or "i%" or "e%" or "o%" or "u%";
++----------+
+| EmpFname |
++----------+
+| armu     |
+| anish    |
++----------+
+2 rows in set, 4 warnings (0.00 sec)
+
+mysql> select EmpFname from employee where EmpFname like  '_a%' or "_i%" or "_e%" or "_o%" or "_u%";
++-----------+
+| EmpFname  |
++-----------+
+| ramkumar  |
+| maheshwar |
+| ramlal    |
+| ramkumari |
+| lalul     |
++-----------+
+5 rows in set, 4 warnings (0.00 sec)
+
+mysql> select *from employee where EmpFname like  '_a%' or "_i%" or "_e%" or "_o%" or "_u%" and Gender="M";
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+| EmpID | EmpFname  | EmpLname | Department | Project | Address | DOB        | Gender | Salary |
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+|     2 | ramkumar  | sarma    | D1         | p1      | jfjkd   | 01/12/1990 | M      |  50000 |
+|     3 | maheshwar | Sahni    | D3         | p3      | jhdfj   | 01/12/1967 | M      |   5000 |
+|     6 | ramlal    | yadav    | Admin      | p6      | jhdfj   | 01/12/1976 | M      |   5000 |
+|     7 | ramkumari | yadav    | D1         | p1      | jhdfj   | 01/12/19   | f      |   5000 |
+|     8 | lalul     | sarma    | Account    | p8      | jhdfj   | 01/12/1978 | M      |   5000 |
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+5 rows in set, 4 warnings (0.00 sec)
+
+mysql> *from employee where EmpFname like  ('_a%' or "_i%" or "_e%" or "_o%" or "_u%") and Gender="M";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*from employee where EmpFname like  ('_a%' or "_i%" or "_e%" or "_o%" or "_u%") ' at line 1
+mysql> select EmpFname from employee where EmpFname like  in('_a%' , "_i%" , "_e%" ,"_o%" , "_u%");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'in('_a%' , "_i%" , "_e%" ,"_o%" , "_u%")' at line 1
+mysql> select Department from employee;
++------------+
+| Department |
++------------+
+| D1         |
+| D1         |
+| D3         |
+| D4         |
+| HR         |
+| Admin      |
+| D1         |
+| Account    |
+| Account    |
++------------+
+9 rows in set (0.00 sec)
+
+mysql> select *from employee where salary<75000 and Gender="f";
++-------+-----------+----------+------------+---------+---------+----------+--------+--------+
+| EmpID | EmpFname  | EmpLname | Department | Project | Address | DOB      | Gender | Salary |
++-------+-----------+----------+------------+---------+---------+----------+--------+--------+
+|     5 | renu      | yadav    | HR         | p5      | jhdfj   | 01/12/19 | f      |   5000 |
+|     7 | ramkumari | yadav    | D1         | p1      | jhdfj   | 01/12/19 | f      |   5000 |
++-------+-----------+----------+------------+---------+---------+----------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select count *from Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from Employee' at line 1
+mysql> select count(Empname) from employee;
+ERROR 1054 (42S22): Unknown column 'Empname' in 'field list'
+mysql> select count(EmpFname)from employee;
++-----------------+
+| count(EmpFname) |
++-----------------+
+|               9 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select count *from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from employee' at line 1
+mysql> select count(EmpFname) from employee whwre salary<100000 and salary>75000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'salary<100000 and salary>75000' at line 1
+mysql> select count(EmpFname) from employee whwre Salary<100000 and Salary>75000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Salary<100000 and Salary>75000' at line 1
+mysql> select count(EmpFname) from employee where Salary<100000 and Salary>75000;
++-----------------+
+| count(EmpFname) |
++-----------------+
+|               0 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> selct count( different Project) from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selct count( different Project) from employee' at line 1
+mysql> select count(distinct Project) from employee;
++-------------------------+
+| count(distinct Project) |
++-------------------------+
+|                       6 |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select Department from employee group by Department;
++------------+
+| Department |
++------------+
+| D1         |
+| D3         |
+| D4         |
+| HR         |
+| Admin      |
+| Account    |
++------------+
+6 rows in set (0.00 sec)
+
+mysql> select *from employee group by Department;
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+| EmpID | EmpFname  | EmpLname | Department | Project | Address | DOB        | Gender | Salary |
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+|     1 | armu      | yadav    | D1         | p1      | jhdfj   | 30/34/3423 | male   | 489545 |
+|     3 | maheshwar | Sahni    | D3         | p3      | jhdfj   | 01/12/1967 | M      |   5000 |
+|     4 | anish     | singh    | D4         | p4      | jhdfj   | 01/12/1564 | M      |   6000 |
+|     5 | renu      | yadav    | HR         | p5      | jhdfj   | 01/12/19   | f      |   5000 |
+|     6 | ramlal    | yadav    | Admin      | p6      | jhdfj   | 01/12/1976 | M      |   5000 |
+|     8 | lalul     | sarma    | Account    | p8      | jhdfj   | 01/12/1978 | M      |   5000 |
++-------+-----------+----------+------------+---------+---------+------------+--------+--------+
+6 rows in set (0.00 sec)
+
+mysql>
